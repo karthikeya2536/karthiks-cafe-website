@@ -12,7 +12,8 @@ import {
   LogOut, 
   ChevronRight,
   Menu,
-  X
+  X,
+  BookOpen
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
