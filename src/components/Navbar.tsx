@@ -34,36 +34,40 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <Utensils className="h-8 w-8 gold-text" />
-            <span className="text-2xl font-serif font-bold tracking-tighter">
-              KARTHIK&apos;S <span className="gold-text">CAFE</span>
-            </span>
-          </Link>
+            <Link href="/" className="flex items-center space-x-2 group">
+              <Utensils className={`h-8 w-8 transition-colors ${scrolled ? 'gold-text' : 'text-white group-hover:gold-text'}`} />
+              <span className={`text-2xl font-serif font-bold tracking-tighter transition-colors ${scrolled ? 'text-foreground' : 'text-white'}`}>
+                KARTHIK&apos;S <span className="gold-text">CAFE</span>
+              </span>
+            </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium hover:gold-text transition-colors"
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:gold-text ${
+                    scrolled ? 'text-foreground' : 'text-white'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Button asChild className="gold-bg hover:opacity-90">
+                <Link href="/reservations">Book a Table</Link>
+              </Button>
+            </div>
+
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={`p-2 focus:outline-none transition-colors ${
+                  scrolled ? 'text-foreground' : 'text-white'
+                }`}
               >
-                {link.name}
-              </Link>
-            ))}
-            <Button asChild className="gold-bg hover:opacity-90">
-              <Link href="/reservations">Book a Table</Link>
-            </Button>
-          </div>
-
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-foreground focus:outline-none"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
         </div>
       </div>
 
